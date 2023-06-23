@@ -27,6 +27,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Reclaim output directory
+        if: always()
+        run: sudo chown -R 1001:1001 ${{ github.workspace }}/output
       - name: Checkmarx DAST Github Action
         uses: Checkmarx/dast-github-action@v1.0.4
         env:
@@ -39,10 +42,7 @@ jobs:
             base_url: "https://deu.ast.checkmarx.net/"
             fail_on: ""
             verbose: true
-      #      output: ./output
-      - name: Reclaim output directory
-        if: always()
-        run: sudo chown -R 1001:1001 ${{ github.workspace }}/output
+            output: ./output
       - uses: actions/upload-artifact@v3
         if: always()
         name: Upload Logs
