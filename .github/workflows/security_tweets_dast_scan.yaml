@@ -37,7 +37,7 @@ jobs:
           CX_APIKEY: ${{ secrets.CX_ONE_API_KEY }}
         with:
             command: web
-            config: ${{ github.workspace }}/.github/workflows/security_tweets_dast_scan.yaml
+            config: ${{ github.workspace }}/security_tweets.yaml
             environment_id: "a8e3127b-5270-46d9-90ba-33aad42b0f1b"
             log_level: info
             base_url: "https://deu.ast.checkmarx.net/"
