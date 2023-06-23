@@ -27,9 +27,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Reclaim output directory
-        if: always()
-        run: sudo chown -R 1001:1001 ${{ github.workspace }}/output
+      - name: Create Output folder
+        run: mkdir ${{ github.workspace }}/output
+      - name: Change dir owner
+        run: sudo chown -R 1000:1000 ${{ github.workspace }}
       - name: Checkmarx DAST Github Action
         uses: Checkmarx/dast-github-action@v1.0.4
         env:
